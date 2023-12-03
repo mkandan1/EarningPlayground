@@ -8,7 +8,7 @@ export const SignUp = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [name, setName] = useState('');
-    const [inviteCode, setInviteCode] = useState(0);
+    const [inviteCode, setInviteCode] = useState('');
     const [isLoggingIn, setIsLoggingIn] = useState(false);
     const [feedback, setFeedback] = useState('');
 
@@ -151,7 +151,7 @@ export const SignUp = () => {
     useEffect(()=>{
         const urlParams = new URLSearchParams(window.location.hash.slice(1));
         const codeValue = urlParams.get('code');
-        setInviteCode(codeValue)
+        setInviteCode(codeValue ?? '')
     })
 
     return (

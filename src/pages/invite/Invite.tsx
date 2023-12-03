@@ -1,8 +1,8 @@
 import { onAuthStateChanged } from 'firebase/auth'
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { auth, db } from '../../FirebaseConfig'
 import { get, ref } from 'firebase/database'
-import { FaPeopleCarry, FaShare } from 'react-icons/fa'
+import { FaShare } from 'react-icons/fa'
 
 export const Invite = () => {
     const [inviteCount, setInviteCount] = useState(0);
@@ -36,12 +36,12 @@ export const Invite = () => {
             range.selectNode(linkRef.current);
 
             const selection = window.getSelection();
-            selection.removeAllRanges();
-            selection.addRange(range);
+            selection?.removeAllRanges();
+            selection?.addRange(range);
 
             document.execCommand('copy');
 
-            selection.removeAllRanges();
+            selection?.removeAllRanges();
 
             // Set state to indicate that the link has been copied
             setIsCopied(true);

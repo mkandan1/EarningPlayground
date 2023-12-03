@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 
 export default function NativeBanner(): JSX.Element {
     const containerId = 'container-1f9fba3a4c42eeba308fbf4563eb0668';
-    const banner = useRef<HTMLDivElement>();
+    const banner = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const refreshAd = () => {

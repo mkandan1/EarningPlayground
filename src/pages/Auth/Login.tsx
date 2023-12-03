@@ -19,7 +19,7 @@ export const Login = () => {
         }
 
         signInWithEmailAndPassword(auth, email, password)
-        .then((user)=> {
+        .then(()=> {
             window.location.href = '/'
         })
         .catch((err)=> {
