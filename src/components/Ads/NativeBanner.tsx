@@ -25,7 +25,7 @@ export default function NativeBanner(): JSX.Element {
         refreshAd();
 
         // Set interval to refresh native banner every 35 seconds
-        const intervalId = setInterval(refreshAd, 20000);
+        const intervalId = setInterval(refreshAd, 35000);
 
         // Clean up the interval on component unmount
         return () => clearInterval(intervalId);

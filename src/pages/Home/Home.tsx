@@ -39,7 +39,7 @@ export const Home = () => {
             <div className="mt-5">
                 <h2 className="font-manrope font-semibold text-xl tracking-tight">Welcome back, <span className="font-light">{name}</span></h2>
 
-                <div className="flex gap-x-10">
+                <div className="flex gap-x-10 flex-wrap">
                     <div className="w-full sm:w-36 px-5 py-3 mt-5 rounded-md bg-white border flex flex-col gap-y-2">
                         <h5 className="font-inter text-sm font-medium text-slate-500">Total Earning</h5>
                         <p className="font-manrope text-xl">₹ {totalEarning}</p>
