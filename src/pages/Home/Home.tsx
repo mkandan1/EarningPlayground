@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import { onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "../../FirebaseConfig";
 import { ref, get } from "firebase/database";
-import Banner460 from "../../components/Ads/Banner460";
+import Banner from "../../components/Ads/Banner";
 
 export const Home = () => {
     const [name, setName] = useState("");
@@ -56,7 +56,7 @@ export const Home = () => {
             </div>
 
             <div className="flex justify-start">
-                <Banner460 />
+                <Banner />
             </div>
 
             <div className="mt-10">

@@ -140,6 +140,27 @@ export const Playground = () => {
                 <div id="game_container" className="w-full pt-20 justify-center items-center flex flex-col gap-y-2">
                     <h2 className="font-manrope">Guess a number between</h2>
                     <h1 className="text-3xl font-poppins">10 - 100</h1>
+                    <div
+                id="banner-ad-container"
+                className="mt-0 mb-4"
+            >
+                {
+                    adChoice > 2 ? (
+                        <Banner />
+                    ) : (
+                        <>
+                            {
+                                adChoice == 2 ? (
+                                    <Banner460 />
+                                ) : (
+                                    <NativeBanner />
+                                )
+                            }
+                        </>
+
+                    )
+                }
+            </div>
 
                     {feedback && <p className="font-poppins text-sm text-yellow-600">{feedback}</p>}
                     <div className="flex flex-col gap-y-8">
@@ -171,27 +192,7 @@ export const Playground = () => {
                 </div>
             )}
 
-            <div
-                id="banner-ad-container"
-                className="mt-0 mb-4"
-            >
-                {
-                    adChoice > 2 ? (
-                        <Banner />
-                    ) : (
-                        <>
-                            {
-                                adChoice == 2 ? (
-                                    <Banner460 />
-                                ) : (
-                                    <NativeBanner />
-                                )
-                            }
-                        </>
-
-                    )
-                }
-            </div>
+            
 
 
             {/* Congrats Popup */}
