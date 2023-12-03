@@ -157,7 +157,7 @@ export const SignUp = () => {
     return (
         <div className="w-full h-screen flex justify-center pt-52 px-2">
             <div>
-                <h1 className="text-3xl tracking-tight font-manrope">Play on free time for your <span className="text-indigo-500">pocket money</span></h1>
+            <h1 className="text-3xl tracking-tight font-manrope">Get <span className="text-indigo-500">Rs 10</span> in just 10 mins</h1>
 
                 <div className="pt-20">
                     <h2 className="font-poppins text-lg mt-10">Sign Up</h2>
