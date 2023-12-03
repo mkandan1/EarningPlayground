@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 
 interface CircleProgressBarProps {
-    duration: number
+  duration: number
 }
 
 export const GameCount: React.FC<CircleProgressBarProps> = ({ duration }) => {
-  const [radius, setRadius] = useState(40); // Adjust the radius as needed
-  const [circumference, setCircumference] = useState(2 * Math.PI * radius);
+  const radius = 40; // Adjust the radius as needed
+  const circumference = 2 * Math.PI * radius;
   const [percentage, setPercentage] = useState(0);
 
   useEffect(() => {
@@ -21,7 +21,7 @@ export const GameCount: React.FC<CircleProgressBarProps> = ({ duration }) => {
         const progress = (elapsedTime / (duration * 1000)) * 100;
         setPercentage(progress);
         requestAnimationFrame(updatePercentage);
-        
+
       } else {
         setPercentage(100);
       }

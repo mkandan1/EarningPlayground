@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 
 export default function Banner460(): JSX.Element {
-    const banner = useRef<HTMLDivElement>();
+    const banner = useRef<HTMLDivElement>(null);
 
     const atOptions = {
         key: 'af0d679c230c081da37cf2a31cbd2afc',

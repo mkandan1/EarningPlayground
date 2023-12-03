@@ -1,5 +1,5 @@
 import { onAuthStateChanged } from 'firebase/auth'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { FaUser } from 'react-icons/fa'
 import { auth } from '../../FirebaseConfig'
 import NativeBanner from '../../components/Ads/NativeBanner'
@@ -13,8 +13,8 @@ const MyAccount = () => {
             if(user){
                 let displayName = user.displayName;
                 let email = user.email;
-                setName(displayName);
-                setEmail(email)
+                setName(displayName?? '');
+                setEmail(email?? '')
             }
         })
     })

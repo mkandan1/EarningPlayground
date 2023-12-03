@@ -14,7 +14,7 @@ export const Home = () => {
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 let userName = user.displayName;
-                setName(userName);
+                setName(userName?? '');
                 const dbRef = ref(db, 'Users/' + user.uid);
 
                 get(dbRef).then((snapshot) => {
