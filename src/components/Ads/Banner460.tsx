@@ -33,6 +33,11 @@ export default function Banner460(): JSX.Element {
         // Initial ad load
         refreshAd();
 
+        // Set interval to refresh ad every 35 seconds
+        const intervalId = setInterval(refreshAd, 35000);
+
+        // Clean up the interval on component unmount
+        return () => clearInterval(intervalId);
     }, []);
 
     return <div className="mx-2 my-5 flex justify-center items-center text-center" ref={banner}></div>;
