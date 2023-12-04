@@ -14,7 +14,7 @@ export const Playground = () => {
     const [showGame, setShowGame] = useState(false);
     const [secretNumber, setSecretNumber] = useState<number | undefined>(undefined);
     const [showCongratsPopup, setShowCongratsPopup] = useState(false);
-    const earnedAmount = 0.40;
+    const earnedAmount = 5.0;
     const adChoice = Math.floor(Math.random() * 3) + 1;
 
     useEffect(() => {
