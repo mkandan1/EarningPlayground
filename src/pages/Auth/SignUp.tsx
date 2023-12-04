@@ -50,6 +50,7 @@ export const SignUp = () => {
                         .then((userCred) => {
                             updateProfile(userCred.user, { displayName: name }).then(() => {
 
+                                const currentDate = new Date().toISOString().split('T')[0];
                                 const userInviteCode = Math.floor(Math.random() * 999999);
                                 const code = userInviteCode.toString().padStart(6, '0');
                                 const dbRef = ref(db, 'Users/' + userCred.user.uid)
@@ -58,7 +59,9 @@ export const SignUp = () => {
                                     invite_count: 0,
                                     payment_history: [0],
                                     total_earning: 0,
-                                    invite_code: code
+                                    invite_code: code,
+                                    date: currentDate,
+                                    limit: 0,
                                 })
 
 
