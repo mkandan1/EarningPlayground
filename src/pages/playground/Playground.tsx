@@ -15,10 +15,11 @@ export const Playground = () => {
     const [secretNumber, setSecretNumber] = useState<number | undefined>(undefined);
     const [showCongratsPopup, setShowCongratsPopup] = useState(false);
     const earnedAmount = 5.0;
-    const adChoice = Math.floor(Math.random() * 3) + 1;
+    const [adChoice, setAdChoice] = useState(0);
 
     useEffect(() => {
         handleNewGame();
+        setAdChoice(Math.floor(Math.random() * 3) + 1)
     }, []);
 
     const handleNewGame = () => {
