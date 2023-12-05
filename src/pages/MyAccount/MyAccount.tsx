@@ -2,7 +2,6 @@ import { onAuthStateChanged } from 'firebase/auth'
 import { useEffect, useState } from 'react'
 import { FaUser } from 'react-icons/fa'
 import { auth } from '../../FirebaseConfig'
-import NativeBanner from '../../components/Ads/NativeBanner'
 
 const MyAccount = () => {
     const [name, setName] = useState('');
@@ -30,7 +29,6 @@ const MyAccount = () => {
                 <p className='font-poppins mt-5'>{email}</p>
                 
                 <p className='text-center text-gray-400 font-manrope mt-10'>No data</p>
-                <NativeBanner/>
             </div>
         </div>
     )

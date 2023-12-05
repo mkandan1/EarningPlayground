@@ -45,7 +45,7 @@ export const Header = () => {
                     true ?
                         <div className="flex justify-between items-center gap-x-10">
                             <div>
-                                <p className="font-inter text-sm font-medium flex gap-x-2 items-center"><FaWallet className="text-indigo-600"/> <span className="font-light">Wallet: ₹ {walletBalance}</span></p>
+                                <p className="font-inter text-sm font-medium flex gap-x-2 items-center"><FaWallet className="text-indigo-600"/> <span className="font-light">Wallet: <span className="font-semibold">₹ {walletBalance}</span></span></p>
                             </div>
                             <div className="bg-indigo-600 p-2 rounded-full cursor-pointer" onClick={() => setToggleMenu((prev) => !prev)}>
                                 <FaUser className="text-white" />
