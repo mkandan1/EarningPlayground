@@ -4,6 +4,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "../../FirebaseConfig";
 import { ref, get } from "firebase/database";
 import Banner from "../../components/Ads/Banner";
+import { Footer } from "../../components/Ads/Footer";
 
 export const Home = () => {
     const [name, setName] = useState("");
@@ -73,6 +74,7 @@ export const Home = () => {
 
             <div>
             </div>
+            <Footer/>
         </div>
     )
 }
