@@ -4,7 +4,7 @@ export default function Banner460(): JSX.Element {
     const banner = useRef<HTMLDivElement>(null);
 
     const atOptions = {
-        key: 'af0d679c230c081da37cf2a31cbd2afc',
+        key: 'ea2bcc03782b1494c35999ec874fdb42',
         format: 'iframe',
         height: 60,
         width: 468,
@@ -13,7 +13,7 @@ export default function Banner460(): JSX.Element {
 
     useEffect(() => {
         const refreshAd = () => {
-            if (banner.current) {
+            if (typeof document != 'undefined' && banner.current) {
                 // Clear the existing content
                 banner.current.innerHTML = '';
 

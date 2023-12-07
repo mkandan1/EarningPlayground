@@ -61,7 +61,7 @@ export const Home = () => {
                 </div>
                 <div className="mt-5">
                     <div className="w-full sm:w-52 h-36 bg-indigo-600 border flex flex-col py-8 px-5 rounded-md">
-                        <h4 className="font-manrope font-medium text-white">Guess The Number</h4>
+                        <h4 className="font-manrope font-medium text-white">Addition</h4>
                         <Link to='/playground/guessthenumber' className="bg-white rounded-sm px-3 py-2 text-sm font-inter mt-2 w-24 text-center">Play Now</Link>
                     </div>
                 </div>

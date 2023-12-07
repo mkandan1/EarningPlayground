@@ -7,17 +7,15 @@ import { get, ref, update } from "firebase/database";
 import './Playground.css'
 import Banner460 from "../../components/Ads/Banner460";
 import Banner from "../../components/Ads/Banner";
-import NativeBanner from "../../components/Ads/NativeBanner";
 
 export const Playground = () => {
     const [userGuess, setUserGuess] = useState("");
     const [feedback, setFeedback] = useState("");
     const [showGame, setShowGame] = useState(false);
     const [isLimitReached, setIsLimitReached] = useState(false);
-    const [secretNumber, setSecretNumber] = useState<number | undefined>(undefined);
+    const [number, setNumber] = useState<{ num1: number, num2: number } | undefined>(undefined);
     const [showCongratsPopup, setShowCongratsPopup] = useState(false);
     const earnedAmount = 2.0;
-    const [showFullSizeAd, setFullSizeAd] = useState(true);
     const [isLoading, setIsLoading] = useState(true);
 
     // Step 1: Initialize ad choice
@@ -39,18 +37,22 @@ export const Playground = () => {
         const options: Intl.DateTimeFormatOptions = { day: '2-digit', month: '2-digit', year: 'numeric' };
         const indianDateFormatter = new Intl.DateTimeFormat('en-IN', options);
 
+
         const dateFormatResult = indianDateFormatter.format(date);
 
         return dateFormatResult
     }
 
-    const handleCloseFullSizeAd = () => {
-        setFullSizeAd(false);
-    }
-
     const handleNewGame = () => {
-        const newSecretNumber = Math.floor(Math.random() * 100); // Generate a number between 10 and 100
-        setSecretNumber(newSecretNumber);
+        const newNum1 = Math.floor(Math.random() * 20); // Generate a number between 10 and 100
+        const newNum2 = Math.floor(Math.random() * 20); // Generate a number
+        setNumber({
+            num1: newNum1,
+            num2: newNum2
+        });
+        setFeedback("");
+        setUserGuess("");
+        setIsLimitReached(false);
         setTimeout(() => {
             setShowGame(true);
         }, 5000);
@@ -64,14 +66,14 @@ export const Playground = () => {
                 const limit = snapshot.val().limit;
                 const dateInDatabase = snapshot.val().date;
                 const todayDate = new Date();
-                const formattedDateInDatabase = new Date(dateInDatabase);
+                const [day, month, year] = dateInDatabase.split('-').map(Number);
+                const formattedDateInDatabase = new Date(year, month - 1, day);
                 const formattedDate = indianDateFormat(todayDate).replace(/\//g, '-');
-
                 if (limit < 5 && dateInDatabase === formattedDate) {
                     console.log('Users allowed to access');
 
                     return true;
-                } else if (limit < 5 && formattedDateInDatabase < todayDate) {
+                } else if (limit <= 5 && formattedDateInDatabase < todayDate && dateInDatabase !== formattedDate) {
                     await update(ref(db, `Users/${uid}`), {
                         date: formattedDate,
                         limit: 0
@@ -89,8 +91,9 @@ export const Playground = () => {
             console.error('Error in preCheckUps:', error);
             return false;
         }
-        return false
+        return false;
     };
+
 
     useEffect(() => {
         const checkLimit = async () => {
@@ -124,22 +127,16 @@ export const Playground = () => {
         return <h1>Loading...</h1>;
     }
 
-    // Render content based on limit status
-    if (isLimitReached) {
-        return (
-            <div className="w-full h-full flex justify-center pt-32">
-                <p className="font-manrope">You have reached 5 / 5 limit. Come back later</p>
-            </div>
-        );
-    }
+
 
 
     const handleGuessSubmit = () => {
         const parsedGuess = parseInt(userGuess, 10);
 
         if (!isNaN(parsedGuess)) {
-            if (parsedGuess === secretNumber) {
-                setFeedback("Congratulations! You guessed the correct number!");
+            const correctAnswer = (number?.num1 ?? 0) + (number?.num2 ?? 0);
+            if (parsedGuess === correctAnswer) {
+                setFeedback("Congratulations! You found the correct answer!");
                 setShowCongratsPopup(true);
 
                 onAuthStateChanged(auth, (user) => {
@@ -154,7 +151,7 @@ export const Playground = () => {
                                     const balance = parseFloat(snapshot.val().balance) + earnedAmount;
                                     const limit = parseInt(snapshot.val().limit) + 1;
 
-                                    if (limit < 6) {
+                                    if (limit > 5) {
                                         setIsLimitReached(true)
                                     }
 
@@ -174,25 +171,38 @@ export const Playground = () => {
                             });
                     }
                 });
-            } else if (parsedGuess < secretNumber!) {
-                setFeedback("Your guess is too low. Try again!");
             } else {
-                setFeedback("Your guess is too high. Try again!");
+                setFeedback("Incorrect! Try again");
             }
         } else {
             setFeedback("Please enter a valid number.");
         }
     };
 
-    const handleCloseGame = () => {
+    const handleCloseGame = async () => {
         // Reset state and start a new game
         console.log(isLimitReached);
 
         setShowGame(true);
         setFeedback("");
         setUserGuess("");
-        handleNewGame();
+
+        window.location.href = '/playground/guessthenumber'
+
     };
+
+    // Render content based on limit status
+    if (isLimitReached) {
+        return (
+            <div className="w-full h-full flex flex-col items-center pt-32">
+                <p className="font-manrope">You have reached 5 / 5 limit. Come back later</p>
+
+                <div id="banner-ad-container" className="mt-0 mb-4">
+                    <Banner460 />
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="px-5 sm:px-24">
@@ -200,7 +210,7 @@ export const Playground = () => {
                 <GoBack url="/" />
             </div>
 
-            {
+            {/* {
                 showFullSizeAd ? (
                     <div className="w-[80%] h-screen bg-blue-200 absolute top-10 shadow-lg">
                         <div className="w-full flex justify-end py-5 px-5">
@@ -212,16 +222,13 @@ export const Playground = () => {
                     </div>
                 )
                     : <></>
-            }
+            } */}
 
             {showGame
                 ?
                 <div id="game_container" className="w-full pt-20 justify-center items-center flex flex-col gap-y-2">
-                    <h2 className="font-manrope">Guess a number between</h2>
-                    <h1 className="text-3xl font-poppins">10 - 100</h1>
-                    <div id="banner-ad-container" className="mt-0 mb-4">
-                        <Banner460/>
-                    </div>
+                    <h2 className="font-manrope">Add the two numbers</h2>
+                    <h1 className="text-3xl font-poppins">{number?.num1} + {number?.num2}</h1>
 
                     {feedback && <p className="font-poppins text-sm text-yellow-600">{feedback}</p>}
                     <div className="flex flex-col gap-y-8">
@@ -252,7 +259,7 @@ export const Playground = () => {
             }
 
             <div id="ad_container">
-                <NativeBanner/>
+                <Banner />
             </div>
 
 

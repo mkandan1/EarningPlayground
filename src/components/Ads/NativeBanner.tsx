@@ -6,7 +6,7 @@ export default function NativeBanner(): JSX.Element {
 
     useEffect(() => {
         const refreshAd = () => {
-            if (banner.current) {
+            if (typeof document !== 'undefined' && banner.current) {
                 // Clear the existing content
                 banner.current.innerHTML = '';
 
