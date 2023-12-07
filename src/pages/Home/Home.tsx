@@ -56,10 +56,6 @@ export const Home = () => {
                 </div>
             </div>
 
-            <div className="flex justify-start">
-                <Banner />
-            </div>
-
             <div className="mt-10">
                 <div>
                     <h2 className="font-poppins tracking-tight text-gray-500">Latest Games</h2>
