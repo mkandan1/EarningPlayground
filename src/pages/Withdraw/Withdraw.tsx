@@ -5,7 +5,6 @@ import { get, ref } from 'firebase/database';
 import { MaterialReactTable, useMaterialReactTable, MRT_ColumnDef } from 'material-react-table';
 import { Box } from '@mui/material';
 import { FaLock } from 'react-icons/fa';
-import Banner460 from '../../components/Ads/Banner460';
 
 type Payment = {
     date: string;
@@ -102,7 +101,7 @@ export const Withdraw = () => {
                             <h4 className='font-manrope font-medium'>You're payments are on hold</h4>
                             <h1 className='text-xl font-poppins'>Invite <span className='text-indigo-500'>3 friends</span> to get your first payment</h1>
                             <p className='font-manrope'>Don't worry we will your money on the payment date</p>
-                            <Banner460/>
+                            
                         </div>
 
                     </div>
