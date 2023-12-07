@@ -243,13 +243,13 @@ export const Playground = () => {
                         <button
                             onClick={handleGuessSubmit}
                             className="bg-indigo-600 py-2 text-white font-inter tracking-tight rounded-md"
-                        > Submit Guess</button>
+                        > Submit Answer</button>
                     </div>
                 </div>
                 :
                 <div id="ready_container" className="w-full h-96 flex flex-col items-center justify-center gap-y-3 transition-all duration-150 active">
                     <h1 className="font-manrope text-2xl font-semibold text-indigo-500">Are you ready?</h1>
-                    <p className="font-inter text-slate-400">Guess the number between the given pair</p>
+                    <p className="font-inter text-slate-400">Add two given numbers</p>
 
                     <div>
                         <GameCount duration={5} />
